@@ -55,18 +55,22 @@ Simulation over 500 episodes per difficulty level (2,500 episodes per policy):
 
 ```
 .
-├── memory_model.py         # DHP forgetting curve + half-life update rules
-├── mdp.py                  # State/action spaces, transition matrices, cost structure
-├── value_iteration.py      # Bellman solver + monotonicity analysis
-├── threshold_policies.py   # Interpretable policies + policy evaluation
-├── simulator.py            # Monte Carlo episode simulation
-├── main.py                 # Full pipeline: build → solve → simulate → plot
+├── src/
+│   ├── memory_model.py     # DHP forgetting curve + half-life update rules
+│   ├── mdp.py              # State/action spaces, transition matrices, cost structure
+│   ├── value_iteration.py  # Bellman solver + monotonicity analysis
+│   ├── threshold_policies.py  # Interpretable policies + policy evaluation
+│   ├── simulator.py        # Monte Carlo episode simulation
+│   └── main.py             # Full pipeline: build → solve → simulate → plot
 ├── report/
 │   └── project_report.pdf  # Written report
 ├── results/                # Generated figures
 ├── requirements.txt
+├── LICENSE
 └── README.md
 ```
+
+Output paths are anchored to the repo root via `__file__`, so `results/` is written to the same place regardless of which directory you invoke the code from.
 
 ## Running it
 
@@ -75,18 +79,18 @@ git clone https://github.com/<your-username>/<your-repo>.git
 cd <your-repo>
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-python main.py
+python src/main.py
 ```
 
-Runtime is a couple of minutes, dominated by the 20,000 simulated episodes. All figures are written to `results/`.
+Runtime is dominated by the 20,000 simulated episodes. All figures are written to `results/`.
 
 Individual modules also run standalone for inspection:
 
 ```bash
-python memory_model.py        # forgetting curve demo
-python mdp.py                 # state space summary + example transitions
-python value_iteration.py     # optimal policy table + monotonicity report
-python threshold_policies.py  # print each interpretable policy as a table
+python src/memory_model.py        # forgetting curve demo
+python src/mdp.py                 # state space summary + example transitions
+python src/value_iteration.py     # optimal policy table + monotonicity report
+python src/threshold_policies.py  # print each interpretable policy as a table
 ```
 
 ## Figures
